@@ -16,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage
+    
   ],
   imports: [
     BrowserModule,
@@ -27,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage
+    
   ],
   providers: [
     StatusBar,
