@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { BasicPage } from '../action-sheets/basic/page';
 
 @Component({
@@ -6,11 +6,11 @@ import { BasicPage } from '../action-sheets/basic/page';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
-  @ViewChild(BasicPage) basicPage: BasicPage
-  constructor() {
+  constructor(public basicPage: BasicPage) {}
+  
+  openMenu(id: string) {
+    this.basicPage.param1 = id;
     this.basicPage.openMenu();
   }
-  
-  
   
 }
