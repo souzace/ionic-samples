@@ -10,6 +10,10 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BasicPage } from '../pages/action-sheets/basic/page';
+import { FeedPageModule } from "../pages/feed/feed.module";
+import { IntroPageModule } from "../pages/intro/intro.module";
+import { HttpModule } from "@angular/http";
+import { MovieProvider } from '../providers/movie/movie';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,13 @@ import { BasicPage } from '../pages/action-sheets/basic/page';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage
-    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    
+    FeedPageModule,
+    IntroPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +41,8 @@ import { BasicPage } from '../pages/action-sheets/basic/page';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BasicPage
+    BasicPage,
+    MovieProvider
   ]
 })
 export class AppModule {}
