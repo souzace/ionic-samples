@@ -9,23 +9,28 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPage } from "../pages/feed/feed";
 import { IntroPage } from "../pages/intro/intro";
-
+import { ConfigProvider } from "../providers/config/config";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [
+    ConfigProvider
+  ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = IntroPage;
+  rootPage:any;
+
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public configProvider: ConfigProvider
   ) {
     this.initializeApp();
 
@@ -42,6 +47,14 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      let config = this.configProvider.getConfigData();
+      //console.log(config);
+      if (config == null){
+        this.rootPage = IntroPage;
+        this.configProvider.setConfigData(false )
+      } else {
+        this.rootPage = HelloIonicPage;
+      }
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
